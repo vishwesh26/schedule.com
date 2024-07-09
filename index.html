@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invigilation Schedule</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>Invigilation Schedule</h2>
+
+<!-- Form to input data -->
+<form id="scheduleForm">
+  <label for="numDays">Number of Days for Invigilation:</label>
+  <input type="number" id="numDays" name="numDays" min="1" required><br>
+
+  <label for="numTeachers">Number of Teachers Required per Session:</label>
+  <input type="number" id="numTeachers" name="numTeachers" min="1" required><br>
+
+  <!-- Teacher checkboxes -->
+  <div id="teacherCheckboxes">
+    <p>Select Available Teachers:</p>
+    <table>
+      <tbody id="teacherCheckboxesTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Input fields for each day's subject -->
+  <div id="subjectInputs"></div>
+  
+  <button type="button" onclick="generateSchedule()">Generate Schedule</button>
+</form>
+
+<!-- Schedule table -->
+<table id="scheduleTable" style="display: none;">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Morning Invigilators</th>
+      <th>Afternoon Invigilators</th>
+      <th>Subject</th>
+    </tr>
+  </thead>
+  <tbody id="scheduleBody">
+    <!-- Schedule will be generated here dynamically -->
+  </tbody>
+</table>
+
+<button id="downloadBtn" style="display: none;">Download PDF</button>
+<button id="downloadExcelBtn" style="display: none;">Download Excel</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
