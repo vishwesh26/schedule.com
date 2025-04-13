@@ -1,58 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invigilation Schedule</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<h2>Invigilation Schedule</h2>
-
-<!-- Form to input data -->
-<form id="scheduleForm">
-  <label for="numDays">Number of Days for Invigilation:</label>
-  <input type="number" id="numDays" name="numDays" min="1" required><br>
-
-  <label for="numTeachers">Number of Teachers Required per Session:</label>
-  <input type="number" id="numTeachers" name="numTeachers" min="1" required><br>
-
-  <!-- Teacher checkboxes -->
-  <div id="teacherCheckboxes">
-    <p>Select Available Teachers:</p>
-    <table>
-      <tbody id="teacherCheckboxesTable"></tbody>
-    </table>
-  </div>
-
-  <!-- Input fields for each day's subject -->
-  <div id="subjectInputs"></div>
-  
-  <button type="button" onclick="generateSchedule()">Generate Schedule</button>
-</form>
-
-<!-- Schedule table -->
-<table id="scheduleTable" style="display: none;">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Morning Invigilators</th>
-      <th>Afternoon Invigilators</th>
-      <th>Subject</th>
-    </tr>
-  </thead>
-  <tbody id="scheduleBody">
-    <!-- Schedule will be generated here dynamically -->
-  </tbody>
-</table>
-
-<button id="downloadBtn" style="display: none;">Download PDF</button>
-<button id="downloadExcelBtn" style="display: none;">Download Excel</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invigilation Assignment System</title>
+    <meta name="description" content="AI-based Invigilation Assignment System for colleges" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>Invigilation Assignment System</h1>
+        <p>Efficiently manage your exam supervision schedules</p>
+      </div>
+    </header>
+    
+    <main class="container">
+      <div class="tabs">
+        <div class="tabs-list">
+          <button class="tab-trigger active" data-tab="setup">1. Exam Setup</button>
+          <button class="tab-trigger" data-tab="teachers">2. Teachers</button>
+          <button class="tab-trigger" data-tab="schedule">3. Schedule</button>
+        </div>
+        
+        <div class="tab-content active" id="setup">
+          <h2 class="section-title">Configure Exam Period</h2>
+          <div class="card">
+            <div class="form-container">
+              <div class="form-group">
+                <label for="days">Number of Exam Days</label>
+                <input id="days" type="number" min="1" placeholder="Enter number of days">
+              </div>
+              
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="morningTeachers">Teachers per Morning Session</label>
+                  <input id="morningTeachers" type="number" min="1" placeholder="Enter number of teachers">
+                </div>
+                
+                <div class="form-group">
+                  <label for="afternoonTeachers">Teachers per Afternoon Session</label>
+                  <input id="afternoonTeachers" type="number" min="1" placeholder="Enter number of teachers">
+                </div>
+              </div>
+              
+              <div class="form-actions">
+                <button id="saveSetupBtn" class="button">Save & Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="teachers">
+          <h2 class="section-title">Manage Teacher List</h2>
+          <div class="teacher-manager">
+            <p class="info-text">
+              You need at least <span id="requiredTeachers">0</span> teachers for your invigilation schedule.
+              <br>
+              <span class="note">Note: Once added, teachers cannot be removed from the system.</span>
+            </p>
+            
+            <div class="input-group">
+              <input id="newTeacher" type="text" placeholder="Enter teacher's name">
+              <button id="addTeacherBtn" class="button">Add Teacher</button>
+            </div>
+            
+            <div id="teachersContainer" class="teachers-container">
+              <div class="empty-state">
+                <p>No teachers added yet. Add teachers to create a schedule.</p>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button id="generateScheduleBtn" class="button button-green" disabled>Generate Schedule</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="schedule">
+          <h2 class="section-title">Invigilation Schedule</h2>
+          <div id="scheduleContainer" class="schedule-container">
+            <div class="empty-state">
+              <p>No schedule has been generated yet.</p>
+              <p class="empty-state-subtitle">Complete the exam setup and teacher list, then generate a schedule.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Invigilation Assignment System | All Rights Reserved</p>
+    </footer>
+    
+    <div id="toast" class="toast"></div>
+    
+    <script src="script.js"></script>
+  </body>
 </html>

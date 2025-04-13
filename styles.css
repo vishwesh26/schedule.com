@@ -1,110 +1,451 @@
-body {
-    font-family: 'Lato', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
-    margin: 0;
-    padding: 20px;
-    line-height: 1.6;
+
+/* Base Styles */
+:root {
+    --primary-color: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary-color: #10b981;
+    --secondary-dark: #059669;
+    --danger-color: #ef4444;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --border-radius: 0.5rem;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
   
-  h2 {
-    text-align: center;
-    color: #fff;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-  form {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+    color: var(--gray-800);
+    background-color: var(--gray-50);
+    min-height: 100vh;
   }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Header */
+  .header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem 0;
+  }
+  
+  .header h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  
+  .header p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Main Content */
+  main {
+    padding: 2rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Cards */
+  .card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+  
+  /* Form Elements */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
   label {
-    display: block;
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
   }
-  input[type="number"],
-  input[type="text"] {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  input[type="text"],
+  input[type="number"] {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
   }
-  button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #556270;
-    border: none;
-    border-radius: 8px;
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: transparent;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  
+  /* Buttons */
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s, transform 0.1s;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
   }
-  button:hover {
-    background-color: #4ecdc4;
+  
+  .button:hover {
+    background-color: var(--primary-dark);
   }
-  table {
+  
+  .button:active {
+    transform: translateY(1px);
+  }
+  
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .button-green {
+    background-color: var(--secondary-color);
+  }
+  
+  .button-green:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  .button-outline {
+    background-color: white;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+  }
+  
+  .button-outline:hover {
+    background-color: var(--gray-50);
+  }
+  
+  .button-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Tabs */
+  .tabs {
+    margin-bottom: 2rem;
+  }
+  
+  .tabs-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tab-trigger {
+    padding: 0.75rem;
+    text-align: center;
+    background-color: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .tab-trigger:hover {
+    background-color: var(--gray-50);
+  }
+  
+  .tab-trigger.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  .tab-content {
+    display: none;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  /* Teacher Manager */
+  .teacher-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .info-text {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+  }
+  
+  .note {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .input-group input {
+    flex: 1;
+  }
+  
+  .teachers-container {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--gray-50);
+    color: var(--gray-500);
+  }
+  
+  .empty-state-subtitle {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  .teacher-table {
     width: 100%;
-    margin-top: 30px;
-    border-spacing: 0;
+    border-collapse: collapse;
   }
-  th, td {
-    padding: 15px;
-    background-color: #fff;
-    color: #333;
+  
+  .teacher-table th {
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    background-color: var(--gray-50);
+    color: var(--gray-500);
   }
-  th {
-    background-color: #556270;
-    color: #fff;
+  
+  .teacher-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--gray-200);
   }
-  .teacher-checkbox {
-    margin: 10px 0;
+  
+  .teacher-table tr:nth-child(even) {
+    background-color: var(--gray-50);
   }
-  #downloadBtn,
-  #downloadExcelBtn {
-    display: block;
-    width: 200px;
-    padding: 15px;
-    margin: 30px auto;
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #ff6b6b;
+  
+  .teacher-editing {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .teacher-editing input {
+    flex: 1;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+  }
+  
+  .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+    background: none;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: var(--gray-500);
   }
-  #downloadBtn:hover,
-  #downloadExcelBtn:hover {
-    background-color: #c44d58;
+  
+  .btn-icon:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
   }
-  @media (max-width: 480px) {
-    form {
-      padding: 10px;
-    }
-    label {
-      font-size: 0.9rem;
-    }
-    input[type="number"],
-    input[type="text"] {
-      padding: 8px;
-    }
-    button {
-      padding: 8px;
-      font-size: 0.9rem;
-    }
-    th, td {
-      padding: 10px;
-    }
+  
+  .btn-edit {
+    color: var(--primary-color);
   }
+  
+  .btn-check {
+    color: var(--secondary-color);
+  }
+  
+  .btn-x {
+    color: var(--danger-color);
+  }
+  
+  /* Schedule */
+  .schedule-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    background-color: var(--gray-50);
+    color: var(--gray-500);
+  }
+  
+  .schedule-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  
+  .schedule-table tr:nth-child(even) {
+    background-color: var(--gray-50);
+  }
+  
+  .teacher-summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #eff6ff;
+    border-radius: var(--border-radius);
+  }
+  
+  .teacher-summary h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .teacher-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .teacher-stat {
+    background-color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--gray-200);
+    font-size: 0.875rem;
+  }
+  
+  .export-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .btn-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--gray-100);
+    color: var(--gray-600);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Toast Notification */
+  .toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--gray-800);
+    color: white;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.3s, transform 0.3s;
+    max-width: 300px;
+    z-index: 1000;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .toast.success {
+    background-color: var(--secondary-color);
+  }
+  
+  .toast.error {
+    background-color: var(--danger-color);
+  }
+  
